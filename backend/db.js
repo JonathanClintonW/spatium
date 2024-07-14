@@ -2,9 +2,8 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'your_mysql_username',
-    password: 'your_mysql_password',
-    database: 'spatium_db'
+    user: 'root',
+    database: 'spatium'
 });
 
 connection.connect((err) => {
