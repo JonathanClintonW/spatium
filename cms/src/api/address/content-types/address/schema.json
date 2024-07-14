@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "addresses",
+  "info": {
+    "singularName": "address",
+    "pluralName": "addresses",
+    "displayName": "Address"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "member_id": {
+      "type": "integer",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "city_id": {
+      "type": "biginteger",
+      "required": true
+    },
+    "province_id": {
+      "type": "integer",
+      "required": true
+    },
+    "postal_code": {
+      "type": "integer",
+      "max": 6,
+      "required": true
+    }
+  }
+}

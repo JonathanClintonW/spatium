@@ -4,7 +4,8 @@
   "info": {
     "singularName": "member",
     "pluralName": "members",
-    "displayName": "Member"
+    "displayName": "Member",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,14 +21,18 @@
       "required": true
     },
     "phone": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true,
-      "max": 14,
       "unique": true
     },
     "dob": {
       "type": "date",
       "required": true
+    },
+    "point": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
     }
   }
 }
