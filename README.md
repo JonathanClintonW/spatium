@@ -23,7 +23,7 @@ cd cms
 npm install
 ```
 
-in root folder install:
+In root folder install:
 ```bash
 npm install concurrently --save-dev
 ```
