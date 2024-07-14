@@ -1,24 +1,20 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const Member = require('./memberModel');
-const Product = require('./productModel');
 const Address = require('./addressModel');
+const OrderItem = require('./orderItemModel');
 
 const Order = sequelize.define('Order', {
     member_id: {
         type: DataTypes.BIGINT,
         allowNull: false
     },
-    product_id: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-    },
     address_id: {
         type: DataTypes.BIGINT,
         allowNull: false,
     },
-    quantity: {
-        type: DataTypes.INTEGER,
+    amount: {
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
     },
     status: {
@@ -30,8 +26,8 @@ const Order = sequelize.define('Order', {
     timestamps: false
 });
 
-Cart.belongsTo(Member, { foreignKey: 'member_id' });
-Cart.belongsTo(Product, { foreignKey: 'product_id' });
-Cart.belongsTo(Address, { foreignKey: 'address_id' });
+Order.belongsTo(Member, { foreignKey: 'member_id' });
+Order.belongsTo(Address, { foreignKey: 'address_id' });
+Order.hasMany(OrderItem, { foreignKey: 'order_id' });
 
 module.exports = Order;

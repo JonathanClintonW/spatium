@@ -976,9 +976,8 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   };
   attributes: {
     member_id: Attribute.BigInteger & Attribute.Required;
-    product_id: Attribute.BigInteger & Attribute.Required;
     address_id: Attribute.BigInteger & Attribute.Required;
-    quantity: Attribute.Integer & Attribute.Required;
+    amount: Attribute.Decimal;
     status: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -991,6 +990,72 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderItemOrderItem extends Schema.CollectionType {
+  collectionName: 'order_items';
+  info: {
+    singularName: 'order-item';
+    pluralName: 'order-items';
+    displayName: 'OrderItem';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    order_id: Attribute.BigInteger & Attribute.Required;
+    product_id: Attribute.BigInteger & Attribute.Required;
+    quantity: Attribute.Integer & Attribute.Required;
+    price: Attribute.Decimal & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-item.order-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order-item.order-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentPayment extends Schema.CollectionType {
+  collectionName: 'payments';
+  info: {
+    singularName: 'payment';
+    pluralName: 'payments';
+    displayName: 'Payment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    order_id: Attribute.BigInteger & Attribute.Required;
+    payment_method: Attribute.String;
+    payment_status: Attribute.String;
+    amount: Attribute.Decimal;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment.payment',
       'oneToOne',
       'admin::user'
     > &
@@ -1101,6 +1166,8 @@ declare module '@strapi/types' {
       'api::coupon.coupon': ApiCouponCoupon;
       'api::member.member': ApiMemberMember;
       'api::order.order': ApiOrderOrder;
+      'api::order-item.order-item': ApiOrderItemOrderItem;
+      'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
       'api::review.review': ApiReviewReview;
     }

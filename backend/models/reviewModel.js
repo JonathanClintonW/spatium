@@ -25,7 +25,7 @@ const Review = sequelize.define('Review', {
     timestamps: false
 });
 
-Cart.belongsTo(Member, { foreignKey: 'member_id' });
-Cart.belongsTo(Product, { foreignKey: 'product_id' });
+Review.belongsTo(Member, { foreignKey: 'member_id' });
+Review.belongsTo(Product, { foreignKey: 'product_id' });
 
 module.exports = Review;
