@@ -13,6 +13,9 @@ npm install
 cd frontend
 ```
 ```bash
+npm install next react react-dom
+```
+```bash
 npm install
 ```
 
