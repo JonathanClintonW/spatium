@@ -1,15 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const memberRoutes = require('./routes/memberRoutes');
+
 const app = express();
-const port = 3001;
-const connection = require('./db'); // Ensure you have your db.js set up properly
+const port = 3002;
 
-app.use(express.json());
-
-// Define your API routes here
-app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello from backend!' });
-});
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/api/members', memberRoutes);
 
 app.listen(port, () => {
-    console.log(`Backend is running on http://localhost:${port}`);
+    console.log(`Backend server is running on http://localhost:${port}`);
 });
