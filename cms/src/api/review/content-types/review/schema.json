@@ -4,7 +4,8 @@
   "info": {
     "singularName": "review",
     "pluralName": "reviews",
-    "displayName": "Review"
+    "displayName": "Review",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,11 +13,11 @@
   "pluginOptions": {},
   "attributes": {
     "product_id": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "member_id": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "rating": {

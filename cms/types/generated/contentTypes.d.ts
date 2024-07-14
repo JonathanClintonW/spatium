@@ -794,12 +794,13 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     singularName: 'address';
     pluralName: 'addresses';
     displayName: 'Address';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    member_id: Attribute.Integer & Attribute.Required;
+    member_id: Attribute.BigInteger & Attribute.Required;
     address: Attribute.Text & Attribute.Required;
     city_id: Attribute.BigInteger & Attribute.Required;
     province_id: Attribute.Integer & Attribute.Required;
@@ -835,13 +836,14 @@ export interface ApiCartCart extends Schema.CollectionType {
     singularName: 'cart';
     pluralName: 'carts';
     displayName: 'Cart';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    user_id: Attribute.Integer & Attribute.Required;
-    product_id: Attribute.Integer & Attribute.Required;
+    member_id: Attribute.BigInteger & Attribute.Required;
+    product_id: Attribute.BigInteger & Attribute.Required;
     quantity: Attribute.Integer & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -967,14 +969,15 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     singularName: 'order';
     pluralName: 'orders';
     displayName: 'Order';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    user_id: Attribute.Integer & Attribute.Required;
-    product_id: Attribute.Integer & Attribute.Required;
-    address_id: Attribute.Integer & Attribute.Required;
+    member_id: Attribute.BigInteger & Attribute.Required;
+    product_id: Attribute.BigInteger & Attribute.Required;
+    address_id: Attribute.BigInteger & Attribute.Required;
     quantity: Attribute.Integer & Attribute.Required;
     status: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
@@ -1038,13 +1041,14 @@ export interface ApiReviewReview extends Schema.CollectionType {
     singularName: 'review';
     pluralName: 'reviews';
     displayName: 'Review';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    product_id: Attribute.Integer & Attribute.Required;
-    member_id: Attribute.Integer & Attribute.Required;
+    product_id: Attribute.BigInteger & Attribute.Required;
+    member_id: Attribute.BigInteger & Attribute.Required;
     rating: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<

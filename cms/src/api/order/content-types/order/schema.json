@@ -4,23 +4,24 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "user_id": {
-      "type": "integer",
+    "member_id": {
+      "type": "biginteger",
       "required": true
     },
     "product_id": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "address_id": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "quantity": {

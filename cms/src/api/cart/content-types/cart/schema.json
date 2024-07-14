@@ -4,19 +4,20 @@
   "info": {
     "singularName": "cart",
     "pluralName": "carts",
-    "displayName": "Cart"
+    "displayName": "Cart",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "user_id": {
-      "type": "integer",
+    "member_id": {
+      "type": "biginteger",
       "required": true
     },
     "product_id": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "quantity": {
