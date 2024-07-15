@@ -1,9 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Address = require('./addressModel');
-const Cart = require('./cartModel');
-const Order = require('./orderModel');
-const Review = require('./reviewModel');
 
 const Member = sequelize.define('Member', {
   name: {
@@ -31,10 +27,5 @@ const Member = sequelize.define('Member', {
   tableName: 'members',
   timestamps: false
 });
-
-Member.hasMany(Address, { foreignKey: 'member_id' });
-Member.hasMany(Cart, { foreignKey: 'member_id' });
-Member.hasMany(Order, { foreignKey: 'member_id' });
-Member.hasMany(Review, { foreignKey: 'member_id' });
 
 module.exports = Member;
