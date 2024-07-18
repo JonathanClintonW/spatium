@@ -26,6 +26,26 @@
     "status": {
       "type": "string",
       "required": true
+    },
+    "member": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::member.member"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
+    },
+    "order_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order-item.order-item"
+    },
+    "payment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment.payment"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order-item",
     "pluralName": "order-items",
-    "displayName": "OrderItem"
+    "displayName": "OrderItem",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,6 +27,16 @@
     "price": {
       "type": "decimal",
       "required": true
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
     }
   }
 }

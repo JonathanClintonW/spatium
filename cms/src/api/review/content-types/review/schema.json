@@ -28,6 +28,16 @@
     },
     "comment": {
       "type": "text"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "member": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::member.member"
     }
   }
 }

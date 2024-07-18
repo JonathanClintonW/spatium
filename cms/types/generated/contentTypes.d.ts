@@ -802,16 +802,14 @@ export interface ApiAddressAddress extends Schema.CollectionType {
   attributes: {
     member_id: Attribute.BigInteger & Attribute.Required;
     address: Attribute.Text & Attribute.Required;
-    city_id: Attribute.BigInteger & Attribute.Required;
-    province_id: Attribute.Integer & Attribute.Required;
-    postal_code: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          max: 6;
-        },
-        number
-      >;
+    province: Attribute.String & Attribute.Required;
+    city: Attribute.String & Attribute.Required;
+    zipcode: Attribute.Integer;
+    member: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'api::member.member'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -845,6 +843,16 @@ export interface ApiCartCart extends Schema.CollectionType {
     member_id: Attribute.BigInteger & Attribute.Required;
     product_id: Attribute.BigInteger & Attribute.Required;
     quantity: Attribute.Integer & Attribute.Required;
+    member: Attribute.Relation<
+      'api::cart.cart',
+      'oneToOne',
+      'api::member.member'
+    >;
+    product: Attribute.Relation<
+      'api::cart.cart',
+      'oneToOne',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -869,6 +877,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
+    products: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -945,6 +958,35 @@ export interface ApiMemberMember extends Schema.CollectionType {
         number
       > &
       Attribute.DefaultTo<0>;
+    password: Attribute.Password & Attribute.Required;
+    confirmed: Attribute.Boolean & Attribute.DefaultTo<true>;
+    provider: Attribute.String & Attribute.DefaultTo<'local'>;
+    uuid: Attribute.UID;
+    addresses: Attribute.Relation<
+      'api::member.member',
+      'oneToMany',
+      'api::address.address'
+    >;
+    carts: Attribute.Relation<
+      'api::member.member',
+      'oneToMany',
+      'api::cart.cart'
+    >;
+    orders: Attribute.Relation<
+      'api::member.member',
+      'oneToMany',
+      'api::order.order'
+    >;
+    reviews: Attribute.Relation<
+      'api::member.member',
+      'oneToMany',
+      'api::review.review'
+    >;
+    address: Attribute.Relation<
+      'api::member.member',
+      'oneToOne',
+      'api::address.address'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -979,6 +1021,26 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     address_id: Attribute.BigInteger & Attribute.Required;
     amount: Attribute.Decimal;
     status: Attribute.String & Attribute.Required;
+    member: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::member.member'
+    >;
+    address: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::address.address'
+    >;
+    order_items: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::order-item.order-item'
+    >;
+    payment: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::payment.payment'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1003,6 +1065,7 @@ export interface ApiOrderItemOrderItem extends Schema.CollectionType {
     singularName: 'order-item';
     pluralName: 'order-items';
     displayName: 'OrderItem';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1012,6 +1075,16 @@ export interface ApiOrderItemOrderItem extends Schema.CollectionType {
     product_id: Attribute.BigInteger & Attribute.Required;
     quantity: Attribute.Integer & Attribute.Required;
     price: Attribute.Decimal & Attribute.Required;
+    order: Attribute.Relation<
+      'api::order-item.order-item',
+      'oneToOne',
+      'api::order.order'
+    >;
+    product: Attribute.Relation<
+      'api::order-item.order-item',
+      'oneToOne',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1036,6 +1109,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     singularName: 'payment';
     pluralName: 'payments';
     displayName: 'Payment';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1045,6 +1119,11 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     payment_method: Attribute.String;
     payment_status: Attribute.String;
     amount: Attribute.Decimal;
+    order: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1082,6 +1161,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
     category_id: Attribute.Integer & Attribute.Required;
     tokopedia_url: Attribute.Text;
     shopee_url: Attribute.Text;
+    category: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1124,6 +1208,16 @@ export interface ApiReviewReview extends Schema.CollectionType {
         number
       >;
     comment: Attribute.Text;
+    product: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'api::product.product'
+    >;
+    member: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'api::member.member'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -19,6 +19,11 @@
     "description": {
       "type": "text",
       "required": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
     }
   }
 }

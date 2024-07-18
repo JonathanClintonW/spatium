@@ -33,6 +33,48 @@
       "type": "integer",
       "min": 0,
       "default": 0
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": true
+    },
+    "provider": {
+      "type": "string",
+      "default": "local"
+    },
+    "uuid": {
+      "type": "uid",
+      "required": false
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address"
+    },
+    "carts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cart.cart"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address",
+      "mappedBy": "member"
     }
   }
 }

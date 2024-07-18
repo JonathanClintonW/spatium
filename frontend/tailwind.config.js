@@ -7,6 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'custom-black': ' 1px 1px 20px 4px #00a4a72c',
+      },
+      colors: {
+        light_gray: '#B4B4B8',
+        turqoise: '#00a5a7',
+        dark_turqoise: '#003C43',
+        white: '#C7C8CC',
+        black: '#101010',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -17,6 +17,7 @@
     "@strapi/plugin-users-permissions": "^4.25.3",
     "@strapi/strapi": "^4.24.5",
     "axios": "^1.7.2",
+    "bcrypt": "^5.1.1",
     "braces": "^3.0.3",
     "findup-sync": "^5.0.0",
     "micromatch": "^4.0.7",
