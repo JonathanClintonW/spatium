@@ -17,16 +17,25 @@ module.exports = {
     }
 
     const addressData = {
-      member: memberId,
-      member_id: memberId,
       address,
       province,
       city,
       zipcode,
     };
 
+    // Create the address
     const newAddress = await strapi.query('api::address.address').create({ data: addressData });
 
+    // Manually insert into the join table
+    await strapi.db.query('members_addresses_links').create({
+      data: {
+        member_id: memberId,
+        address_id: newAddress.id,
+        address_order: 1 // or some other default value
+      }
+    });
+
+    // Sanitize the output
     const sanitizedAddress = await sanitize.contentAPI.output(newAddress, strapi.getModel('api::address.address'));
 
     ctx.send(sanitizedAddress);
