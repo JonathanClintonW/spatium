@@ -6,9 +6,9 @@ import '../styles/globals.css';
 const MyApp = ({ Component, pageProps }) => {
     return (
         <AuthProvider>
-            <div className='p-4 bg-black min-h-screen tracking-wide'>
+            <div className='p-4 bg-white dark:bg-black text-black dark:text-white min-h-screen w-screen tracking-wide select-none transition duration-500'>
                 <Navbar />
-                {/* <Component {...pageProps} /> */}
+                <Component {...pageProps} />
                 {/* <Footer /> */}
             </div>
         </AuthProvider>

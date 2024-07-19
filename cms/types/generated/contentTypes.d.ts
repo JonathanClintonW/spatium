@@ -800,14 +800,14 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    member_id: Attribute.BigInteger & Attribute.Required;
     address: Attribute.Text & Attribute.Required;
     province: Attribute.String & Attribute.Required;
     city: Attribute.String & Attribute.Required;
     zipcode: Attribute.Integer;
+    member_id: Attribute.Integer & Attribute.Required;
     member: Attribute.Relation<
       'api::address.address',
-      'oneToOne',
+      'manyToOne',
       'api::member.member'
     >;
     createdAt: Attribute.DateTime;
@@ -845,7 +845,7 @@ export interface ApiCartCart extends Schema.CollectionType {
     quantity: Attribute.Integer & Attribute.Required;
     member: Attribute.Relation<
       'api::cart.cart',
-      'oneToOne',
+      'manyToOne',
       'api::member.member'
     >;
     product: Attribute.Relation<
@@ -877,11 +877,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
-    products: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::product.product'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -982,11 +977,6 @@ export interface ApiMemberMember extends Schema.CollectionType {
       'oneToMany',
       'api::review.review'
     >;
-    address: Attribute.Relation<
-      'api::member.member',
-      'oneToOne',
-      'api::address.address'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1023,7 +1013,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     status: Attribute.String & Attribute.Required;
     member: Attribute.Relation<
       'api::order.order',
-      'oneToOne',
+      'manyToOne',
       'api::member.member'
     >;
     address: Attribute.Relation<
@@ -1077,7 +1067,7 @@ export interface ApiOrderItemOrderItem extends Schema.CollectionType {
     price: Attribute.Decimal & Attribute.Required;
     order: Attribute.Relation<
       'api::order-item.order-item',
-      'oneToOne',
+      'manyToOne',
       'api::order.order'
     >;
     product: Attribute.Relation<
@@ -1208,15 +1198,15 @@ export interface ApiReviewReview extends Schema.CollectionType {
         number
       >;
     comment: Attribute.Text;
+    member: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
+      'api::member.member'
+    >;
     product: Attribute.Relation<
       'api::review.review',
       'oneToOne',
       'api::product.product'
-    >;
-    member: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'api::member.member'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

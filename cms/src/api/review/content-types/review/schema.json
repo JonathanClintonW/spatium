@@ -29,15 +29,16 @@
     "comment": {
       "type": "text"
     },
+    "member": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::member.member",
+      "inversedBy": "reviews"
+    },
     "product": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::product.product"
-    },
-    "member": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::member.member"
     }
   }
 }

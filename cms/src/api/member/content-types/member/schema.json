@@ -53,27 +53,25 @@
     "addresses": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::address.address"
+      "target": "api::address.address",
+      "mappedBy": "member"
     },
     "carts": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::cart.cart"
+      "target": "api::cart.cart",
+      "mappedBy": "member"
     },
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::order.order"
+      "target": "api::order.order",
+      "mappedBy": "member"
     },
     "reviews": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::review.review"
-    },
-    "address": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::address.address",
+      "target": "api::review.review",
       "mappedBy": "member"
     }
   }

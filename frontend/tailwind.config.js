@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,8 +15,8 @@ module.exports = {
         light_gray: '#B4B4B8',
         turqoise: '#00a5a7',
         dark_turqoise: '#003C43',
-        white: '#C7C8CC',
-        black: '#101010',
+        white: '#FFFFFF',
+        black: '#000000',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

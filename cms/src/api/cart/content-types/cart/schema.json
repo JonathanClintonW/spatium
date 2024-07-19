@@ -26,8 +26,9 @@
     },
     "member": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::member.member"
+      "relation": "manyToOne",
+      "target": "api::member.member",
+      "inversedBy": "carts"
     },
     "product": {
       "type": "relation",

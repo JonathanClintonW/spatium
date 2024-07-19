@@ -30,8 +30,9 @@
     },
     "order": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::order.order"
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "order_items"
     },
     "product": {
       "type": "relation",

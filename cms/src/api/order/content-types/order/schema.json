@@ -29,8 +29,9 @@
     },
     "member": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::member.member"
+      "relation": "manyToOne",
+      "target": "api::member.member",
+      "inversedBy": "orders"
     },
     "address": {
       "type": "relation",
@@ -40,12 +41,14 @@
     "order_items": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::order-item.order-item"
+      "target": "api::order-item.order-item",
+      "mappedBy": "order"
     },
     "payment": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::payment.payment"
+      "target": "api::payment.payment",
+      "mappedBy": "order"
     }
   }
 }
